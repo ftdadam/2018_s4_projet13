@@ -53,7 +53,7 @@ class Table(FloatLayout):
 				mx,my=a*motionevent.pos[0],motionevent.pos[1]+dy
 
 
-				# ### Here we draw a green point where the flucidal is
+				### Here we draw a green point where the flucidal is
 				# with self.canvas:
 				# 	Color(0,1,0)
 				# 	d=3.
@@ -114,7 +114,7 @@ class Table(FloatLayout):
 				f.close()
 				ssh = paramiko.SSHClient()
 				ssh.load_host_keys(os.path.expanduser(os.path.join("~", ".ssh", "known_hosts")))
-				ssh.connect("10.77.3.120", username="poppy", password="poppy")
+				ssh.connect("10.42.0.246", username="poppy", password="poppy")
 				sftp = ssh.open_sftp()
 				sftp.put("data", "/home/pi/poppy_project/game_code/data")
 				sftp.close()
@@ -128,14 +128,11 @@ class Table(FloatLayout):
 
 		### This is to relaunch the game (make sure there is no more button on play)
 		def relaunch_player_1():
-			print(1)
+			print("Relaunching as player 2 ...")
 			self.turn=0
 			for but in self.buttons:
-				if -2==self.buttons[but]["id"]:
-					but.background_color=(1,1,1,1)
-				else :
-					self.buttons[but]["state"]=False
-					but.background_color=(1,1,1,1)
+				self.buttons[but]["state"]=False
+				but.background_color=(1,1,1,1)
 
 
 			f = open('data', 'w')
@@ -145,23 +142,22 @@ class Table(FloatLayout):
 			f.close()
 			ssh = paramiko.SSHClient()
 			ssh.load_host_keys(os.path.expanduser(os.path.join("~", ".ssh", "known_hosts")))
-			ssh.connect("10.77.3.120", username="poppy", password="poppy")
+			ssh.connect("10.42.0.246", username="poppy", password="poppy")
 			sftp = ssh.open_sftp()
 			sftp.put("data", "/home/pi/poppy_project/game_code/data")
 			sftp.close()
-			ssh.close()
-			self.children[-2].background_color=(0,0,128,1)
+			ssh.close()	
+			for but in self.buttons:
+				if -1 == self.buttons[but]["id"] : but.background_color=(128,0,0,1)
+				if -2 == self.buttons[but]["id"] : but.background_color=(0,0,128,1)
 			pass
 
 		def relaunch_player_2():
-			print(1)
+			print("Relaunching as player 1 ...")
 			self.turn=0
 			for but in self.buttons:
-				if -1==self.buttons[but]["id"]:
-					but.background_color=(1,1,1,1)
-				else :
-					self.buttons[but]["state"]=False
-					but.background_color=(1,1,1,1)
+				self.buttons[but]["state"]=False
+				but.background_color=(1,1,1,1)
 
 			f = open('data', 'w')
 			f.write(str(-1)+'\n')
@@ -170,12 +166,14 @@ class Table(FloatLayout):
 			f.close()
 			ssh = paramiko.SSHClient()
 			ssh.load_host_keys(os.path.expanduser(os.path.join("~", ".ssh", "known_hosts")))
-			ssh.connect("10.77.3.120", username="poppy", password="poppy")
+			ssh.connect("10.42.0.246", username="poppy", password="poppy")
 			sftp = ssh.open_sftp()
 			sftp.put("data", "/home/pi/poppy_project/game_code/data")
 			sftp.close()
 			ssh.close()
-			self.children[-1].background_color=(128,0,0,1)
+			for but in self.buttons:
+				if -1 == self.buttons[but]["id"] : but.background_color=(128,0,0,1)
+				if -2 == self.buttons[but]["id"] : but.background_color=(0,0,128,1)
 			pass
 
 
