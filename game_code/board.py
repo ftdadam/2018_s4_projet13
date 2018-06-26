@@ -132,7 +132,7 @@ class Table(FloatLayout):
 			self.turn=0
 			for but in self.buttons:
 				self.buttons[but]["state"]=False
-				but.background_color=(1,1,1,1)
+				but.background_color=(float(49/255),float(167/255),float(204/255),1)
 
 
 			f = open('data', 'w')
@@ -157,7 +157,7 @@ class Table(FloatLayout):
 			self.turn=0
 			for but in self.buttons:
 				self.buttons[but]["state"]=False
-				but.background_color=(1,1,1,1)
+				but.background_color=(float(49/255),float(167/255),float(204/255),1)
 
 			f = open('data', 'w')
 			f.write(str(-1)+'\n')
@@ -202,7 +202,7 @@ class Table(FloatLayout):
 			col=(i)%self.cols  
 			x,y= (0.3+float(col)/8),(0.60-float(row)/7)
 			
-			self.add_widget(Button(background_color=(1,1,1,1),pos_hint={"center_x":x,"center_y":y},size_hint=(0.11,0.13)))
+			self.add_widget(Button(background_color=(float(49/255),float(167/255),float(204/255),1),pos_hint={"center_x":x,"center_y":y},size_hint=(0.11,0.13)))
 			self.do_layout()
 			
 			#self.children[0].bind(on_press=play)
