@@ -1,8 +1,3 @@
-# 2018_s4_projet13
-Hand for Poppy in IMT Atlantique
-
-USER GUIDE
-
 1. Prepare the Raspberry
 
 In order to control the robot and the electromagnet you will need a RaspberryPi 3, a GrovePi+
